@@ -35,7 +35,7 @@ app.set("view engine", "ejs")
 const path = require('path');
 
 // Assign port
-const HTTP_PORT = process.env.PORT || 50;
+const HTTP_PORT = process.env.PORT || 3000;
 
 // Make the public folder to public
 app.use(express.static('public'));
