@@ -1,23 +1,37 @@
-<div class="navbar bg-base-100 dark:bg-custom-radial bg-gradient-to-bl from-blue-200 to-rose-200">
-    <div class="flex-1 logo ">
-        <a href="/" class="btn btn-ghost dark:text-white logo lg:text-3.5xl md:text-3xl sm:text-sm font-bold">Lego Collection</a>
+<div class="drawer drawer-end  z-10">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <!-- Navbar -->
+      <div class="navbar dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500 bg-base-100">
+        <div class="flex-1">
+          <a href="/" class="btn btn-ghost normal-case text-xl">Lego Collection</a>
+        </div>
+        <!-- Hamburger menu for smaller screens -->
+        <div class="flex-none lg:hidden">
+          <label for="my-drawer" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+            </svg>
+          </label>
+        </div>
+        <!-- Navigation links for larger screens -->
+        <div class="flex-none hidden lg:block">
+          <ul class="menu menu-horizontal p-0">
+            <li><a href="/lego/sets" class="<%= (page == '/lego/sets') ? 'active' : '' %>">View Collection</a></li>
+            <li><a href="/about" class="<%= (page == '/about') ? 'active' : '' %>">About</a></li>
+            <li><a href="/lego/addSet" class="<%= (page == '/lego/addSet') ? 'active' : '' %>">Add to Collection</a></li>
+          </ul>
+        </div>
+      </div>
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer" class="drawer-overlay"></label>
+      <!-- Sidebar with navigation links for smaller screens -->
+      <ul class="menu p-4 dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-750 dark:to-pink-650 bg-gradient-to-bl from-indigo-600 to-pink-500 w-80 min-h-full bg-base-200 text-base-content z-10">
+        <li><a href="/lego/sets" class="<%= (page == '/lego/sets') ? 'active' : '' %>">View Collection</a></li>
+        <li><a href="/about" class="<%= (page == '/about') ? 'active' : '' %>">About</a></li>
+        <li><a href="/lego/addSet" class="<%= (page == '/lego/addSet') ? 'active' : '' %>">Add to Collection</a></li>
+      </ul>
     </div>
-    <div class="flex-none z-50">
-        <ul class="menu menu-horizontal px-1">
-            <li><a class="<%= (page == '/lego/sets') ? 'active navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' : 'navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' %>" href="/lego/sets">View Collection</a></li>
-            <li><a class="<%= (page == '/about') ? 'active navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' : 'navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' %>" href="/about">About</a></li>
-            <!-- <li>
-                <details>
-                    <summary class="navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo">
-                        Theme
-                    </summary>
-                    <ul class="p-2 bg-base-100 rounded-t-none">
-                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=technic">Technic</a></li>
-                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=Books">Books</a></li>
-                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=Playhouse">Playhouse</a></li>
-                    </ul>
-                </details>
-            </li>   -->
-        </ul>
-    </div>
-</div>
+  </div>
+  

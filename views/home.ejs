@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html class="dark:bg-custom-radial bg-gradient-to-bl from-blue-200 to-rose-200 lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Lego Collection</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <title>Lego Collection</title>
 </head>
 <body>
-    <div>
-    <!-- Include the partial navbar below -->
-    <%- include('partials/navbar', {page: '/'}) %>
-    
-    <div class="container w-11/12 grid 2xl:transition-colors duration-300 ease-in-out  xl:gride-col-3  lg:grid-cols-2  md:grid-cols-2 sm:grid-cols-1 mx-auto px-1 gap-10 gap-3">
-        
-        <!-- col-span-12 take entire one row by itself -->
-
-        <div class=" spiderman xl:col-span-3 lg:col-span-2 md:col-span-2 sm:col-span-1 shadow-lg"> 
-        <div class="hero bg-base-200 rounded-lg dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500 z-0 ">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <img src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-173869.jpg/1000x800.jpg?1707998617.0042028" class="sm:w-full max-w-sm rounded-lg shadow-2xl" />
-                <div>
-                    <h1 class="xl:text-7xl lg:text-5xl md:text-4xl sm:text-4xl font-bold welcome text-white">Welcome to my lego collection!</h1>
-                    <p class="py-6 text-white">I started my lego collection since I was a kid. Clicked get started to view my lego collection.</p>
-                    <button onclick="window.location.href='/lego/sets'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 xl:w-48 md:w-36 sm:w-32 ">Get Started</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- collection 1 -->
-    <div class="collection1 xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-1">
-        <div class="card w-96 lg:w-96  md:w-full sm:w-full h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
-            <figure class="px-10 mt-10 pt-10">
-              <img src="https://cdn.rebrickable.com/media/sets/01-1.jpg"" alt="Shoes" class="collection1" />
-            </figure>
-            <div class="card-body items-center text-center">
-              <h2 class="card-title text-neutral-100">Techic</h2>
-              <p class="text-neutral-100">#01 ChainLinks 25 </p>
-              <div class="card-actions">
-                <button onclick="location.href='/lego/sets/01-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
-              </div>
-            </div>
+  <!-- Include the partial navbar below -->
+  <%- include('partials/navbar', {page: '/'}) %>
+  
+<div class="container my-10 mx-auto w-11/12">
+    <div class="spiderman shadow-lg"> 
+      <div class="hero bg-base-200 rounded-lg dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500 z-0 ">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+          <img src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-173869.jpg/1000x800.jpg?1707998617.0042028" class="sm:w-full max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 class="xl:text-7xl lg:text-5xl md:text-4xl sm:text-4xl font-bold welcome text-white">Welcome to my lego collection!</h1>
+            <p class="py-6 text-white">I started my lego collection since I was a kid. Clicked get started to view my lego collection.</p>
+            <button onclick="window.location.href='/lego/sets'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 xl:w-48 md:w-36 sm:w-32 ">Get Started</button>
           </div>
         </div>
-
-        <!-- collection 2 -->
-        <div class="collection2 xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-1">
-            <div class="card w-96 lg:w-96 md:w-full sm:w-full h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
-                <figure class="px-10 mt-10 pt-48 ">
-                  <img src="https://cdn.rebrickable.com/media/sets/0241187567-1.jpg" alt="Shoes" class="collection2" />
-                </figure>
-                <div class="card-body items-center text-center">
-                  <h2 class="card-title text-neutral-100">Books</h2>
-                  <p class="text-neutral-100"> Build Your Own Adventure"</p>
-                  <div class="card-actions">
-                    <button onclick="location.href='/lego/sets/0241187567-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- collection 3 -->
-            <div class="collection3 xl:col-span-1  lg:col-span-1  md:col-span-1 sm:col-span-1">
-                <div class="card w-96 lg:w-96 md:w-full sm:w-full h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
-                    <figure class="px-10 mt-10 pt-20">
-                      <img src="https://cdn.rebrickable.com/media/sets/032-1.jpg" alt="Shoes" class="collection3" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                      <h2 class="card-title text-neutral-100">Playhouse</h2>
-                      <p class="text-neutral-100">LEGO SET - Living Room</p>
-                      <div class="card-actions">
-                        <button onclick="location.href='/lego/sets/032-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-    </div> <!--  End of container -->
+      </div>
+    </div> <!-- End of hero section -->
+  
+  <!-- Card container -->
+  <div class="my-5 mx-auto grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10"> 
+    
+    <!-- collection 1 -->
+    <div class="collection1">
+      <div class="card h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
+        <figure class="px-10 mt-10 pt-10">
+          <img src="https://cdn.rebrickable.com/media/sets/01-1.jpg"" alt="Shoes" class="collection1" />
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title text-neutral-100">Techic</h2>
+          <p class="text-neutral-100">#01 ChainLinks 25 </p>
+          <div class="card-actions">
+            <button onclick="location.href='/lego/sets/01-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    <!-- collection 2 -->
+    <div class="collection2">
+      <div class="card h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
+        <figure class="px-10 mt-10 pt-48 ">
+          <img src="https://cdn.rebrickable.com/media/sets/0241187567-1.jpg" alt="Shoes" class="collection2" />
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title text-neutral-100">Books</h2>
+          <p class="text-neutral-100"> Build Your Own Adventure"</p>
+          <div class="card-actions">
+            <button onclick="location.href='/lego/sets/0241187567-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- collection 3 -->
+    <div class="collection3">
+      <div class="card h-[25rem] bg-base-100 shadow-xl dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500">
+        <figure class="px-10 mt-10 pt-20">
+          <img src="https://cdn.rebrickable.com/media/sets/032-1.jpg" alt="Shoes" class="collection3" />
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title text-neutral-100">Playhouse</h2>
+          <p class="text-neutral-100">LEGO SET - Living Room</p>
+          <div class="card-actions">
+            <button onclick="location.href='/lego/sets/032-1'" class="btn btn-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-neutral-100 hover:from-purple-700 hover:to-pink-700 w-28">VIEW</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End of collection 3 -->
+  </div> <!-- End of card container -->
+</div>
 </body>
 </html>

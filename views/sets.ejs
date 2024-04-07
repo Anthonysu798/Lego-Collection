@@ -45,7 +45,7 @@
                     <tr>
                         <td><img src="<%= set.img_url %>" alt="<%= set.name %>" class="2xl:w-80 2xl:h-80 md:w-64 md:h-64"></td>
                         <td class="2xl:text-2xl lg:text-2xl md:text-lg dark:text-white"><%= set.name %></td>
-                        <td><a href="/lego/sets?theme=<%= set.theme %>" class="btn lg:btn-md md:btn-md btn-x btn-accent"><%= set.theme %></a></td>
+                        <td><a href="/lego/sets?theme=<%= set.Theme.name %>" class="btn lg:btn-md md:btn-md btn-x btn-accent"><%= set.Theme.name %></a></td>
                         <td class="2xl:text-3xl lg:text-2xl md:text-xl dark:text-white" ><%= set.year %></td>
                         <td class="2xl:text-2xl lg:text-2xl md:text-lg dark:text-white"><%= set.num_parts %></td>
                         <td><a href="/lego/sets/<%= set.set_num %>" class="btn lg:btn-md md:btn-md btn-x btn-primary">Details</a></td>
