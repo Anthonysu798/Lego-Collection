@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="dark:bg-custom-radial bg-gradient-to-bl from-blue-100 to-rose-100 lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Details</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('partials/navbar', {page: '/lego/sets'}) %>
+            <div class="container w-11/12 2xl:w-11/12 xl:w-11/12 lg:w-11/12 md:w-11/12">
+
+                <div class="hero bg-base-200  dark:text-neutral-100 dark:text-white bg-yellow-500 dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-indigo-600 to-pink-500   rounded-lg my-10">
+                    <div class="hero-content  text-center">
+                      <div class="">
+                        <h1 class="text-5xl font-bold"><%= set.name %></h1>
+                        <p>Below, you will find detailed information about the set: <%= set.name %></p>
+                      </div>
+                    </div>
+                  </div>
+            <!-- Flex or gride the container for the image and the image details -->
+            <div class="imageContainer lg:flex">
+                    <div>
+                        <img class="rounded-lg" src="<%= set.img_url %>" alt="<%= set.name %>" />
+                    </div>
+
+                    <div class="lg:ml-5 ">
+                        <p class="dark:text-white"><span class="font-bold">Year:</span> <%= set.year %></p>
+                        <p class="dark:text-white"><span class="font-bold">Theme:</span> <%= set.theme %></p>
+                        <p class="dark:text-white"><span class="font-bold">Parts:</span> <%= set.num_parts %></p>
+                        <div class="dark:text-white" id="random-quote"></div>
+                        <div class="flex justify-center">
+                            <button hreft="#" onclick="history.back(); return false;" class="btn dark:text-white dark:bg-yellow-500  my-2 border-none btn-warning">Return to the previous page</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('https://api.quotable.io/random')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const quoteElement = document.getElementById('random-quote');
+                    quoteElement.innerHTML = `"${data.content}" — ${data.author}`;
+                })
+                .catch(error => console.error('Fetch error:', error));
+        });
+    </script>
+    
+</body>
+</html>

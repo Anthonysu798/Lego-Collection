@@ -1,0 +1,23 @@
+<div class="navbar bg-base-100 dark:bg-custom-radial bg-gradient-to-bl from-blue-200 to-rose-200">
+    <div class="flex-1 logo ">
+        <a href="/" class="btn btn-ghost dark:text-white logo lg:text-3.5xl md:text-3xl sm:text-sm font-bold">Lego Collection</a>
+    </div>
+    <div class="flex-none z-50">
+        <ul class="menu menu-horizontal px-1">
+            <li><a class="<%= (page == '/lego/sets') ? 'active navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' : 'navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' %>" href="/lego/sets">View Collection</a></li>
+            <li><a class="<%= (page == '/about') ? 'active navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' : 'navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo' %>" href="/about">About</a></li>
+            <!-- <li>
+                <details>
+                    <summary class="navLink lg:text-2xl md:text-xl font-bold dark:text-neutral-100 logo">
+                        Theme
+                    </summary>
+                    <ul class="p-2 bg-base-100 rounded-t-none">
+                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=technic">Technic</a></li>
+                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=Books">Books</a></li>
+                        <li><a class="<%= (page == "/lego/sets") ? 'active' : '' %>" href="/lego/sets?theme=Playhouse">Playhouse</a></li>
+                    </ul>
+                </details>
+            </li>   -->
+        </ul>
+    </div>
+</div>

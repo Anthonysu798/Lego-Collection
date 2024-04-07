@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="dark:bg-custom-radial bg-gradient-to-bl from-blue-200 to-rose-200 lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Lego Collection</title>
+</head>
+<body>
+    <!-- Include the partial navbar below -->
+    <%- include('partials/navbar', {page: '/about'}) %>
+    
+    <!-- Container -->
+    <div class="container mx-auto grid grid-cols-2 gap-8">
+        
+        
+        <div class=" mt-10 hero shadow-2xl bg-base-200 rounded-3xl col-span-2 dark:dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-950 dark:to-pink-950 bg-gradient-to-bl from-blue-300 to-rose-200">
+            <div class="hero-content mullet flex-col lg:flex-row">
+                <div class="flex flex-col items-center justify-center ">
+                    <h1 class="text-5xl font-bold dark:text-neutral-100 m-12 logo">All About Me</h1>
+                </div>
+            </div>
+        </div>   
+        
+        <!-- Image that I like -->
+        <div class="aboutMeOne col-span-1">
+            <img class="xl:w-96 md:w-72 sm:w-full rounded-3xl" src="https://i.pinimg.com/736x/ed/2c/3c/ed2c3ccb5ee79d5d80c4488d0ff784fd.jpg" alt="Mullet Anime">
+        </div>
+
+        <!-- Short paragraph about me -->
+        <div class="aboutMeParagraph col-span-1 md:col-span-1 sm:col-span-2">
+            <p class="py-6 text-3xl xl:leading-loose lg:leading-normal md:leading-normal sm:leading-normal">My name is Anthony Su, I student CPA in Seneca College. I'm a User Designer that makes the website looks cool and responsive. I'm currently in my fourth semester. I enjoy my journey to be a front end developer.</p>
+        </div>
+        
+
+    </div> <!-- Container -->
+    
+    
+    
+</body>
+</html>
