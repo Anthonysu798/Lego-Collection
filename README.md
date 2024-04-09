@@ -31,8 +31,8 @@ The website ensures robust form validation to maintain data quality and enhance 
 
 ### Hosting
 
-- **Cyclic**: The website is hosted on Cyclic, providing fast and reliable cloud hosting solutions. This allows for seamless scalability and performance.
-- **Website Link**: [Visit the Lego Collection Website](#) (Link to the website will be updated soon)
+- **Render**: The website is hosted on Render, providing fast and reliable cloud hosting solutions. This allows for seamless scalability and performance.
+- **Website Link**: [Visit the Lego Collection Website](https://lego-collection-nzji.onrender.com/)
 
 ## Recent Updates
 
@@ -47,6 +47,4 @@ The website ensures robust form validation to maintain data quality and enhance 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-# Lego-Collection
-# Lego-Collection
-# Lego-Collection
+
