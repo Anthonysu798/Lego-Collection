@@ -35,7 +35,7 @@ The website ensures robust form validation to maintain data quality and enhance 
 - **Website Link**: [Visit the Lego Collection Website](https://wild-tan-coral-tux.cyclic.app/)
 
 ## Recent Updates
-
+// 
 - **Responsive Navbar**: The navigation bar has been updated to be fully responsive, providing a consistent experience on all devices.
 - **CRUD Operations**: Users can now add, edit, and delete Lego sets from the collection. These features are implemented with user-friendly interfaces to ensure ease of use.
 

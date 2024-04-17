@@ -17,10 +17,10 @@
                 <h1 class="text-5xl font-bold dark:text-neutral-100 m-12 p-10 logo">Collection</h1>
                 <p class="dark:text-white">Browse the entire collection. Click theme to filter by theme.</p>
                 <div class="tabs tabs-boxed my-5">
-                    <a href="/lego/sets" class="dark:text-white tab <%= (!theme) ? 'tab-active' : '' %>">All</a>
-                    <a href="/lego/sets?theme=Technic" class="tab dark:text-white <%= (theme === 'Technic') ? 'tab-active' : '' %> ">Technic</a>
-                    <a href="/lego/sets?theme=Classic Town" class="tab dark:text-white <%= (theme === 'Classic Town') ? 'tab-active' : '' %> ">Classic Town</a>
-                    <a href="/lego/sets?theme=Playhouse" class="tab dark:text-white <%= (theme === 'Playhouse') ? 'tab-active' : '' %> " >Playhouse</a>
+                    <a href="/lego/sets" class="tab <%= !theme ? 'tab-active' : '' %>">All</a>
+                    <% ['Technic', 'Classic Town', 'Playhouse'].forEach(th => { %>
+                        <a href="/lego/sets?theme=<%= th %>" class="tab <%= theme === th ? 'tab-active' : '' %>"><%= th %></a>
+                    <% }); %>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                     <tr>
                         <td><img src="<%= set.img_url %>" alt="<%= set.name %>" class="2xl:w-80 2xl:h-80 md:w-64 md:h-64"></td>
                         <td class="2xl:text-2xl lg:text-2xl md:text-lg dark:text-white"><%= set.name %></td>
-                        <td><a href="/lego/sets?theme=<%= set.Theme.name %>" class="btn lg:btn-md md:btn-md btn-x btn-accent"><%= set.Theme.name %></a></td>
+                        <td><a href="/lego/sets?theme=<%= set.theme.name %>" class="btn lg:btn-md md:btn-md btn-x btn-accent"><%= set.theme.name %></a></td>
                         <td class="2xl:text-3xl lg:text-2xl md:text-xl dark:text-white" ><%= set.year %></td>
                         <td class="2xl:text-2xl lg:text-2xl md:text-lg dark:text-white"><%= set.num_parts %></td>
                         <td><a href="/lego/sets/<%= set.set_num %>" class="btn lg:btn-md md:btn-md btn-x btn-primary">Details</a></td>

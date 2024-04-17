@@ -1,303 +1,155 @@
-require('dotenv').config({ path: '../.env' });
-const Sequelize = require('sequelize');
-const setData = require('../data/setData.json');
-/* 
-const setData = require("../data/setData.json");
-const themeData = require("../data/themeData.json");
+const mongoose = require('mongoose');
+
+async function initialize() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('Database connected successfully.');
+    } catch (error) {
+        console.error('Failed to connect to MongoDB:', error);
+    }
+}
+const themeSchema = new mongoose.Schema({
+    id: Number,
+    name: String
+}, {collection: 'themes'});
+
+const setSchema = new mongoose.Schema({
+    set_num: { type: String, unique: true },
+    name: String,
+    year: Number,
+    theme_id: Number,
+    num_parts: Number,
+    img_url: String,
+    theme: { type: mongoose.Schema.Types.ObjectId, ref: 'Theme' }
+});
+
+const Theme = mongoose.model('Theme', themeSchema);
+const Set = mongoose.model('Set', setSchema);
+
+async function initialize() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Could not connect to MongoDB:', error);
+    }
+}
+
+/*
+const setDate = require('../data/setData.json');
+const themeData = require('../data/themeData.json');
+
+
+async function insertData() {
+    await Theme.insertMany(themeData);
+    const themes = await Theme.find();
+    const themeMap = themes.reduce((map, theme) => ({...map, [theme.id]: theme._id}), {});
+    const updatedSets = setDate.map(set => ({...set, theme: themeMap[set.theme_id]}));
+    await Set.insertMany(updatedSets);
+}
+
+async function insertData() {
+    try {
+        // Insert themes
+        await Theme.insertMany(themeData);
+        console.log('Themes inserted successfully.');
+
+        // Fetch themes to map theme IDs to MongoDB ObjectIds
+        const themes = await Theme.find();
+        const themeMap = themes.reduce((map, theme) => {
+            map[theme.id] = theme._id;
+            return map;
+        }, {});
+
+        // Update sets with theme ObjectIds and insert
+        const updatedSets = setDate.map(set => ({
+            ...set,
+            theme: themeMap[set.theme_id] // Map theme ID to MongoDB ObjectId for theme reference field
+        }));
+
+        await Set.insertMany(updatedSets);
+        console.log('Sets inserted successfully.');
+    } catch (error) {
+        console.error('Failed to insert data:', error);
+    }
+}
+
+insertData();
 */
 
-const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'postgres',
-    port: 5432,
-    dialectOptions: {
-        ssl: { rejectUnauthorized: false },
-    },
-});
-
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connection has been established successfully.');
-    })
-    .catch((err) => {
-        console.error('Unable to connect to the database:', err);
-    })
-
-// Define Theme model 
-const Theme = sequelize.define('Theme', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+async function createTheme(data) {
+    try {
+        const theme = new Theme(data);
+        await theme.save();
+        console.log('Theme created:', theme);
+        return theme;
+    } catch (error) {
+        console.error('Error creating theme:', error);
+        throw error;
     }
-}, {
-    timestamps: false // disable createdAt and updatedAt fields
-});
+}
 
-// Define Set model
-const Set = sequelize.define('Set', {
-    set_num: {
-        type: Sequelize.STRING,
-        primaryKey: true,
-    },
-    name: {
-        type: Sequelize.STRING
-    },
-    year: {
-        type: Sequelize.INTEGER
-    },
-    num_parts: {
-        type: Sequelize.INTEGER
-    },
-    theme_id: {
-        type: Sequelize.INTEGER,
-    },
-    img_url: {
-        type: Sequelize.STRING
+async function getAllThemes() {
+    try {
+        const themes = await Theme.find();
+        return themes;
+    } catch (error) {
+        console.error('Error retrieving all themes:', error);
+        throw error;
     }
-}, {
-    timestamps: false // Disable createdAt and updatedAt fields
-});
+}
 
-// Create a relationship between Theme and Set
-Set.belongsTo(Theme, { foreignKey: 'theme_id' });
-
-// Create the models with the database if they do not exist
-sequelize.sync()
-    .then(() => {
-        console.log('Models created successfully.');
-    })
-    .catch((err) => {
-        console.error('Unable to create models:', err);
-    });
-
-/* 
-let sets = [];
-*/
-
-
-// Initialize function() 
-// Loop through the themeData from the JSON file and insert each theme individually
-/* 
-function initialize() {
-    return new Promise(async (resolve, reject) => {
-        try {
-            await sequelize.sync();
-
-            // check for default themes in the DB 
-            // get all of the themes from the database
-
-            // if the themes length is === 0, then the DB doens't have any. 
-            // loop through the themeData from the JSON file
-            // insert each them individually.
-
-            // check for default sets in the DB 
-            // same as above, but for sets
-
-            const existingThemes = await Theme.findAll();
-            if (existingThemes.length === 0) {
-                // Loop through the themeData from the JSON file and insert each theme individually
-                for (const theme of themeData) {
-                    await Theme.create(theme);
-                }
-                console.log('Themes from the JSON file have been inserted into the database.');
-            } else {
-                console.log('Database already contains themes. No need to insert default themes from the JSON file.');
-            }
-            resolve(); 
-        } catch (error) {
-            reject("Initialization failed: " + error); 
+async function updateSet(setNum, updateData) {
+    try {
+        const set = await Set.findOneAndUpdate({ set_num: setNum }, updateData, { new: true }).populate('theme');
+        if (!set) {
+            throw new Error(`Set with set_num ${setNum} not found`);
         }
-    });
-}
+        console.log('Updated set:', set);
+        return set;
+    } catch (error) {
+        console.error(`Error updating set with set_num ${setNum}:`, error);
+        throw error;
+    }
+}   
 
-// Create and insert all the data from the theme json into the database
-initialize()
-    .then(() => {
-        console.log("Initialization successful");
-    })
-    .catch((error) => {
-        console.log("Initialization failed: " + error);
-    });
-*/ 
-
-
-// Part 2
-function initialize() {
-    // Ensure the database is created and the tables are created if they do not exist 
-    return new Promise((resolve, reject) => {
-        sequelize.sync()
-            .then(() => {
-                console.log('Database created successfully.');
-                resolve();
-            })
-            .catch(error => {
-                console.error('Failed to create database:', error);
-                reject(error);
-            });
-    });
-}
-
-
-
-
-
-
-
-// Get all set function 
-
-function getAllSets() {
-    return new Promise((resolve, reject) => {
-        Set.findAll({
-            include: [Theme]
-        })
-        .then(sets => {
-            resolve(sets);
-        })
-        .catch(error => {
-            console.log("Error finding all sets: ", error); // Log an error message
-            reject("Failed to retrieve all sets.") // Reject with an error message
-        });
-    });
-}
-
-// Get set by numbers
-// Will return a specific "set" object from the "sets" array
-function getSetByNum(setNum) {
-    return new Promise((resolve, reject) => {
-        Set.findOne({
-            where: { set_num: setNum },
-            include: [{
-                model: Theme,
-                attributes: ['id', 'name']
-            }]
-        })
-        .then(set => {
-            if (set) {
-                console.log(`Found set: ${set.name}`);
-                resolve(set.get({ plain: true })); 
-            } else {
-                reject(new Error(`Set with set_num ${setNum} not found`));
-            }
-        })
-        .catch(err => {
-            console.error(`Error finding set by number ${setNum}:`, err);
-            reject(err);
-        });
-    });
-}
-
-
-
-
-
-
-// Get sets by theme 
-function getSetsByTheme(theme) {
-    return new Promise((resolve, reject) => {
-        Set.findAll({
-            include: [{
-                model: Theme,
-                where: { 
-                    name: {
-                        [Sequelize.Op.iLike]: `%${theme}%` // Case-insensitive search for the theme name
-                    }
-                }
-            }]
-        })
-        .then(sets => {
-            if(sets && sets.length > 0) {
-                resolve(sets);
-            } else {
-                reject("Unable to find requested sets.");
-            }
-        })
-        .catch(error => {
-            console.log("Error finding sets by theme: ", error);
-            reject("Failed to retrieve sets by theme.");
-        });
-    })
-}
-
-
-
-// Get all sets with themes
-function getAllSetsWithThemes() {
-    return new Promise((resolve, reject) => {
-        Set.findAll({
-            include: [{
-                model: Theme,
-                attributes: ['name'] 
-            }]
-        })
-        .then(sets => {
-            resolve(sets);
-        })
-        .catch(error => {
-            console.log("Error finding all sets with themes: ", error);
-            reject("Failed to retrieve all sets with themes.");
-        });
-    });
-}
-
-function getAllThemes() {
-    return new Promise((resolve, reject) => {
-        Theme.findAll()
-            .then(themes => resolve(themes))
-            .catch(error => {
-                console.error("Error finding all themes: ", error);
-                reject("Failed to retrieve all themes.");
-            });
-    });
-}
-
-// import setData to the database
-function importSets() {
-    return new Promise(async (resolve, reject) => {
-        try {
-            for (const set of setData) {
-                await Set.findOrCreate({
-                    where: { set_num: set.set_num },
-                    defaults: {...set}
-                });
-            }
-            console.log('LEGO sets from the JSON file have been inserted into the database.');
-            resolve();
-        } catch (error) {
-            console.error('Failed to import LEGO sets:', error);
-            reject(error);
+async function deleteSet(setId) {
+    try {
+        const result = await Set.findByIdAndDelete(setId);
+        if (!result) {
+            throw new Error('Set not found');
         }
-    });
+        console.log('Deleted set:', result);
+    } catch (error) {
+        console.error('Error deleting set:', error);
+        throw error;
+    }
 }
 
-// Delete function
-function deleteSet(setNum) {
-    return new Promise((resolve, reject) => {
-        Set.destroy({
-            where: { set_num: setNum }
-        })
-        .then(deletionCount => {
-            if (deletionCount > 0) {
-                console.log(`Deleted set with set_num: ${setNum}`);
-                resolve();
-            } else {
-                throw new Error(`No set found with set_num ${setNum} to delete`);
-            }
-        })
-        .catch(err => {
-            console.error(`Error deleting set with set_num ${setNum}:`, err);
-            reject(new Error(err.message || "Deletion failed due to an error."));
-        });
-    });
+async function getSetByNum(setNum) {
+    try {
+        const set = await Set.findOne({ set_num: setNum }).populate('theme');
+        return set;
+    } catch (error) {
+        console.error(`Error finding set by number ${setNum}:`, error);
+        throw error;
+    }
 }
 
-
-
-
-
-module.exports = { initialize, getAllSets, getSetByNum, getSetsByTheme,getAllThemes, deleteSet, Theme, Set};
+module.exports = {
+    /*insertData*/
+    initialize,
+    createTheme,
+    getAllThemes,
+    updateSet,
+    deleteSet,
+    Theme, 
+    Set,
+    getSetByNum
+};
