@@ -32,7 +32,7 @@ The website ensures robust form validation to maintain data quality and enhance 
 ### Hosting
 
 - **Cyclic**: The website is hosted on Cyclic, providing fast and reliable cloud hosting solutions. This allows for seamless scalability and performance.
-- **Website Link**: [Visit the Lego Collection Website]([https://wild-tan-coral-tux.cyclic.app/](https://lego-collection-nzji.onrender.com/)
+- **Website Link**: [Visit the Lego Collection Website](https://lego-collection-nzji.onrender.com/)
 
 ## Recent Updates
 // 
