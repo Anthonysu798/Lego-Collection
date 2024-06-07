@@ -31,14 +31,37 @@ The website ensures robust form validation to maintain data quality and enhance 
 
 ### Hosting
 
-- **Cyclic**: The website is hosted on Cyclic, providing fast and reliable cloud hosting solutions. This allows for seamless scalability and performance.
-- **Website Link**: [Visit the Lego Collection Website](https://lego-collection-nzji.onrender.com/)
+- **AWS EC2**: The website is hosted on AWS EC2, providing a scalable and reliable cloud hosting solution. The instance was configured to allow HTTP and HTTPS traffic, ensuring secure communication.
+- **SSL Certificate**: SSL certificates from Let's Encrypt were used to secure the website, leveraging Caddy for automatic HTTPS management.
+- **Website Link**: [Visit the Lego Collection Website](https://www.legocollection.xyz/)
+
+### Setup and Deployment Process
+
+1. **Launch EC2 Instance**
+    - **Platform**: AWS Management Console.
+    - **AMI**: Ubuntu 24.04 LTS.
+    - **Instance Type**: t2.micro (suitable for free tier).
+    - **Security Groups**: Configured to allow HTTP (port 80) and HTTPS (port 443) traffic.
+    - **Key Pair**: Created/selected a key pair for secure SSH access.
+
+2. **Deploy the Web Application**
+    - **Connection**: Established a secure connection to the EC2 instance using SSH.
+    - **Node.js Installation**: Installed Node.js to run the application.
+    - **Application Deployment**: Cloned the repository and set up the application.
+
+3. **Set Up Caddy for HTTPS**
+    - **Installation**: Installed Caddy, a powerful and easy-to-use web server.
+    - **Configuration**: Created a `Caddyfile` to enable automatic HTTPS and reverse proxy functionality.
+    - **Automatic HTTPS**: Leveraged Caddy's built-in support for Let's Encrypt to obtain and manage SSL certificates, ensuring secure HTTPS connections.
+
+4. **DNS Configuration**
+    - **Route 53**: Configured DNS records to point the custom domain to the EC2 instance.
+    - **CNAME Records**: Added necessary CNAME records for domain validation and SSL certificate issuance.
 
 ## Recent Updates
-// 
+
 - **Responsive Navbar**: The navigation bar has been updated to be fully responsive, providing a consistent experience on all devices.
 - **CRUD Operations**: Users can now add, edit, and delete Lego sets from the collection. These features are implemented with user-friendly interfaces to ensure ease of use.
-
 
 ## Future Enhancements
 
